@@ -12,7 +12,7 @@ const Banner = () => {
                         </h1>
                         
                         <p className="mt-6 text-lg leading-8 text-black">
-                        Learn Arduino with and hands-on projects. Build, create, and innovate
+                        Learn Arduino with hands-on projects. Build, create, and innovate!
                         </p>
                     </div>
 
