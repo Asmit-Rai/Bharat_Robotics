@@ -28,7 +28,7 @@ const postData: DataType[] = [
     },
     {
         profession: 'Tech Enthusiast',
-        name: 'Gautam',
+        name: 'Gautam Rai',
         imgSrc: '/assets/students/gautam.jpg',
         starimg: '/assets/students/stars.png',
         detail: "The hands-on projects like Obstacle Avoidance and Remote Control Robots made learning fun and impactful. This course ignited my passion for robotics!"
