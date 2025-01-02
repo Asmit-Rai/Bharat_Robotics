@@ -14,7 +14,9 @@ const CoursesOffer = () => {
                     <div className="mb-4">
                         <img src="/assets/courses_offer/course_school_students.png" alt="School Course Poster" className="w-full h-70 object-cover rounded-lg" />
                     </div>
-                    <p className="text-gray-700 mb-4">This course is designed to help school students excel in their studies and prepare for future academic challenges.</p>
+                    <p className="text-gray-700 mb-4">
+  This course is designed to help school students excel in Arduino and its functions, including servos, ultrasonic sensors, IR modules, motors, and coding, with hands-on projects like line-following, obstacle-avoidance, and remote control robots and many more.
+</p>
                     <p className="text-xl font-bold text-purple-600 mb-2">Price: ₹1000</p>
                     <p className="text-lg text-gray-600">Contact: +91 7022971047</p>
                 </div>
@@ -24,7 +26,9 @@ const CoursesOffer = () => {
                     <div className="mb-4">
                         <img src="/assets/courses_offer/course_college_students.png" alt="College Course Poster" className="w-full h-70 object-cover rounded-lg" />
                     </div>
-                    <p className="text-gray-700 mb-4">This course is tailored for college students to enhance their skills and knowledge for a successful career.</p>
+                    <p className="text-gray-700 mb-4">
+  For college students, this course offers advanced training in Arduino, ROS, and Gazebo, focusing on real-world applications such as autonomous navigation, robot simulation, and intelligent systems.
+</p>
                     <p className="text-xl font-bold text-purple-600 mb-2">Price:  ₹2000</p>
                     <p className="text-lg text-gray-600">Contact: +91 7022971047</p>
                 </div>
