@@ -15,28 +15,28 @@ const postData: DataType[] = [
     {
         profession: 'Robotics Engineer',
         name: 'Amit Kumar',
-        imgSrc: '/assets/students/user-1.jpg',
+        imgSrc: '/assets/students/amit.jpg',
         starimg: '/assets/students/stars.png',
         detail: "This course helped me dive deep into robotics, learning the basics of Arduino and creating projects like Obstacle Avoidance Robots. The practical approach made everything click!"
     },
     {
         profession: 'Embedded Systems Developer',
         name: 'Aryan Tripathi',
-        imgSrc: '/assets/students/user-3.jpg',
+        imgSrc: '/assets/students/aryan.jpg',
         starimg: '/assets/students/stars.png',
         detail: "Building a Remote Control Robot was fascinating. The way this course breaks down Arduino programming is just amazing. Highly recommended for beginners and experts alike!"
     },
     {
         profession: 'Tech Enthusiast',
         name: 'Gautam',
-        imgSrc: '/assets/students/user-1.jpg',
+        imgSrc: '/assets/students/gautam.jpg',
         starimg: '/assets/students/stars.png',
         detail: "The hands-on projects like Obstacle Avoidance and Remote Control Robots made learning fun and impactful. This course ignited my passion for robotics!"
     },
     {
         profession: 'Software Engineer',
         name: 'Alok Yadav',
-        imgSrc: '/assets/students/user-5.jpg',
+        imgSrc: '/assets/students/alok.jpg',
         starimg: '/assets/students/stars.png',
         detail: "Learning Arduino and creating projects like Line Follower Robots was a game-changer for me. The instructors explain everything so clearly and thoroughly!"
     }
@@ -55,8 +55,8 @@ export default class MultipleItems extends Component {
             slidesToScroll: 1,
             arrows: false,
             autoplay: false,
-            speed: 2000,
-            autoplaySpeed: 2000,
+            speed: 1000,
+            autoplaySpeed: 1000,
             cssEase: "linear",
             responsive: [
                 {
@@ -101,7 +101,7 @@ export default class MultipleItems extends Component {
                             <div key={i}>
                                 <div className='bg-white m-4 pt-8 px-12 pb-10 text-center rounded-lg'>
                                     <div className='relative'>
-                                        <img src={items.imgSrc} alt="gaby" className="inline-block h-16 w-16 m-auto rounded-full ring-2 ring-white" />
+                                        <img src={items.imgSrc} alt="Profile Images" className="inline-block h-20 w-20 m-auto rounded-full ring-2 ring-white" />
                                         <img src={'/assets/students/greenpic.svg'} alt="greenbg" className=" absolute inline-block h-6 w-6 position-green" />
                                     </div>
                                     <h3 className='text-sm pt-4 pb-2'>{items.profession}</h3>
