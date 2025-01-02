@@ -17,11 +17,12 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
     { name: 'Home', href: '/', current: true },
+    { name: 'Courses', href: '/courses-offer', current: false },
     { name: 'Products', href: '#courses-section', current: false },
     { name: 'Mentors', href: '#mentors-section', current: false },
     { name: 'Testimonial', href: '#testimonial-section', current: false },
     { name: 'Join', href: '#join-section', current: false },
-]
+];
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
