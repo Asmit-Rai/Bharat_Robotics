@@ -1,13 +1,20 @@
+"use client"
 import Dropdownone from './Dropdownone';
-
+import { useRouter } from 'next/navigation';
 
 const Banner = () => {
+    const router = useRouter();
+
+    const handleRoute = () => {
+        router.push('/courses-offer');
+    };
+
     return (
         <main className='banner-image'>
             <div className="relative px-6 lg:px-8">
                 <div className="mx-auto max-w-5xl pt-20 sm:pt-20 sm:pb-24">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-75px md:4px">
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-75px md:text-4xl">
                            Welcome to Bharat Robotics
                         </h1>
                         
@@ -22,8 +29,8 @@ const Banner = () => {
                                 <Dropdownone />
                             </div>
                             <div className="col-span-3 sm:col-span-2 mt-2">
-                                <button className="bg-purple w-full hover:bg-pruple text-white font-bold py-4 px-3 rounded">
-                                    See Demo
+                                <button onClick={handleRoute} className="bg-purple w-full hover:bg-pruple text-white font-bold py-4 px-3 rounded">
+                                Explore our courses
                                 </button>
                             </div>
                         </div>
@@ -32,7 +39,7 @@ const Banner = () => {
                 </div>
             </div>
         </main>
-    )
-}
+    );
+};
 
 export default Banner;

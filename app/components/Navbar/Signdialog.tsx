@@ -1,28 +1,81 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-import { LockClosedIcon } from '@heroicons/react/20/solid'
-
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState, useEffect } from 'react';
+import { LockClosedIcon } from '@heroicons/react/20/solid';
+import { auth } from '../../firebaseConfig'; // Import the firebase auth
+import { signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth method
+import { useRouter } from 'next/navigation'; // Import Next.js router
 
 const Signin = () => {
-    let [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+    const router = useRouter();
+
+    useEffect(() => {
+        // Monitor auth state change to check if the user is logged in
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                setIsAuthenticated(true); // User is logged in
+                router.push('/statics'); // Redirect to /statics page
+            } else {
+                setIsAuthenticated(false); // User is not logged in
+            }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription on component unmount
+    }, [router]);
 
     const closeModal = () => {
-        setIsOpen(false)
+        setIsOpen(false);
     }
 
     const openModal = () => {
-        setIsOpen(true)
+        setIsOpen(true);
     }
+
+    // Handle form submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            closeModal(); // Close modal on successful login
+        } catch (err) {
+            setError("Invalid email or password");
+        }
+    };
 
     return (
         <>
+            {!isAuthenticated && (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div className='hidden md:block'>
-                    <button type="button" className='text-15px font-medium space-links' onClick={openModal}>
-                        Sign In
+                <div className="hidden md:block">
+                    <button
+                        type="button"
+                        className="bg-purple text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-purple-700 transition duration-300 ease-in-out"
+                        onClick={openModal}
+                    >
+                        Admin Login
                     </button>
                 </div>
             </div>
+        )}
+
+        {isAuthenticated && (
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="hidden md:block">
+                    <button
+                        type="button"
+                        className="bg-purple text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-purple-700 transition duration-300 ease-in-out"
+                        onClick={() => router.push('/statics')}
+                    >
+                        Show Statics
+                    </button>
+                </div>
+            </div>
+        )}
 
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -50,7 +103,6 @@ const Signin = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-
                                     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                                         <div className="w-full max-w-md space-y-8">
                                             <div>
@@ -63,7 +115,7 @@ const Signin = () => {
                                                     Sign in to your account
                                                 </h2>
                                             </div>
-                                            <form className="mt-8 space-y-6" action="#" method="POST">
+                                            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                                                 <input type="hidden" name="remember" defaultValue="true" />
                                                 <div className="-space-y-px rounded-md shadow-sm">
                                                     <div>
@@ -74,7 +126,8 @@ const Signin = () => {
                                                             id="email-address"
                                                             name="email"
                                                             type="email"
-                                                            autoComplete="email"
+                                                            value={email}
+                                                            onChange={(e) => setEmail(e.target.value)}
                                                             required
                                                             className="relative block w-full appearance-none rounded-none rounded-t-md border border-grey500 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                                             placeholder="Email address"
@@ -88,7 +141,8 @@ const Signin = () => {
                                                             id="password"
                                                             name="password"
                                                             type="password"
-                                                            autoComplete="current-password"
+                                                            value={password}
+                                                            onChange={(e) => setPassword(e.target.value)}
                                                             required
                                                             className="relative block w-full appearance-none rounded-none rounded-b-md border border-grey500 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                                             placeholder="Password"
@@ -116,6 +170,8 @@ const Signin = () => {
                                                     </div>
                                                 </div>
 
+                                                {error && <div className="text-red-500 text-sm">{error}</div>}
+
                                                 <div>
                                                     <button
                                                         type="submit"
@@ -130,7 +186,6 @@ const Signin = () => {
                                             </form>
                                         </div>
                                     </div>
-
 
                                     <div className="mt-4 flex justify-end">
                                         <button
@@ -148,7 +203,7 @@ const Signin = () => {
                 </Dialog>
             </Transition>
         </>
-    )
+    );
 }
 
 export default Signin;
