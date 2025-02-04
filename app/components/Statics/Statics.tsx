@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { collection, getDocs, Timestamp } from "firebase/firestore";
@@ -67,36 +65,35 @@ const Statics: React.FC = () => {
       return <p className="text-center text-gray-500">No data available</p>;
     }
 
+    // Define a consistent column order
+    const columnOrder = ["name", "email", "phone", "address", "timestamp"];
+
     return (
       <Card className="w-full max-w-6xl shadow-lg">
         <CardContent className="p-6">
           <Table>
             <TableHeader>
               <TableRow>
-                {Object.keys(data[0])
-                  .filter((key) => key !== "id")
-                  .map((key) => (
-                    <TableHead key={key} className="font-bold capitalize">
-                      {key}
-                    </TableHead>
-                  ))}
+                {columnOrder.map((columnName) => (
+                  <TableHead key={columnName} className="font-bold capitalize">
+                    {columnName}
+                  </TableHead>
+                ))}
               </TableRow>
             </TableHeader>
             <TableBody>
               {data.map((item) => (
                 <TableRow key={item.id}>
-                  {Object.keys(item)
-                    .filter((key) => key !== "id")
-                    .map((key) => {
-                      let value = item[key];
+                  {columnOrder.map((columnName) => {
+                    let value = item[columnName];
 
-                      // Convert Firestore timestamp to readable format
-                      if (value instanceof Timestamp) {
-                        value = new Date(value.seconds * 1000).toLocaleString();
-                      }
+                    // Convert Firestore timestamp to readable format
+                    if (value instanceof Timestamp) {
+                      value = new Date(value.seconds * 1000).toLocaleString();
+                    }
 
-                      return <TableCell key={key}>{String(value)}</TableCell>;
-                    })}
+                    return <TableCell key={columnName}>{String(value)}</TableCell>;
+                  })}
                 </TableRow>
               ))}
             </TableBody>
@@ -127,7 +124,7 @@ const Statics: React.FC = () => {
           onClick={() => setActiveTab("usersIdeas")}
           variant={activeTab === "usersIdeas" ? "default" : "outline"}
         >
-                Users&apos; Ideas
+          Users&apos; Ideas
         </Button>
       </div>
 
