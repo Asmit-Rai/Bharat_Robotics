@@ -65,8 +65,8 @@ const Statics: React.FC = () => {
       return <p className="text-center text-gray-500">No data available</p>;
     }
 
-    // Define a consistent column order
-    const columnOrder = ["name", "email", "phone", "address", "timestamp"];
+    // Get the column names by sorting the keys in a predictable order
+    const columnOrder = Object.keys(data[0]).filter((key) => key !== "id").sort();
 
     return (
       <Card className="w-full max-w-6xl shadow-lg">
@@ -74,9 +74,9 @@ const Statics: React.FC = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                {columnOrder.map((columnName) => (
-                  <TableHead key={columnName} className="font-bold capitalize">
-                    {columnName}
+                {columnOrder.map((key) => (
+                  <TableHead key={key} className="font-bold capitalize">
+                    {key}
                   </TableHead>
                 ))}
               </TableRow>
@@ -84,15 +84,15 @@ const Statics: React.FC = () => {
             <TableBody>
               {data.map((item) => (
                 <TableRow key={item.id}>
-                  {columnOrder.map((columnName) => {
-                    let value = item[columnName];
+                  {columnOrder.map((key) => {
+                    let value = item[key];
 
                     // Convert Firestore timestamp to readable format
                     if (value instanceof Timestamp) {
                       value = new Date(value.seconds * 1000).toLocaleString();
                     }
 
-                    return <TableCell key={columnName}>{String(value)}</TableCell>;
+                    return <TableCell key={key}>{String(value)}</TableCell>;
                   })}
                 </TableRow>
               ))}
