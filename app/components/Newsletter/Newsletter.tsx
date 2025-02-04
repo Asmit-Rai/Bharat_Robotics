@@ -7,12 +7,12 @@ const Newsletter = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Handle input change
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIdea(e.target.value);
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!idea) {

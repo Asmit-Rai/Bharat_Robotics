@@ -127,7 +127,7 @@ const Statics: React.FC = () => {
           onClick={() => setActiveTab("usersIdeas")}
           variant={activeTab === "usersIdeas" ? "default" : "outline"}
         >
-          Users' Ideas
+                Users&apos; Ideas
         </Button>
       </div>
 
