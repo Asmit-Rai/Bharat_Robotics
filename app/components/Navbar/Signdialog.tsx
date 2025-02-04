@@ -35,10 +35,9 @@ const Signin = () => {
         setIsOpen(true);
     }
 
-    // Handle form submission
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
+    
         try {
             await signInWithEmailAndPassword(auth, email, password);
             closeModal(); // Close modal on successful login
