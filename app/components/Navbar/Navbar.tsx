@@ -41,11 +41,15 @@ const Navbar = () => {
                                     className="block h-8 w-auto lg:hidden"
                                     src={'/assets/logo/Logo.svg'}
                                     alt="Courses-Logo"
+                                    width={30}
+                                    height={30}
                                 />
                                 <Image
                                     className="hidden h-10 w-auto lg:block"
                                     src={'/assets/logo/Logo.svg'}
                                     alt="Courses-Logo"
+                                    width={30}
+                                    height={30}
                                 />
                             </div>
                             <div className="hidden md:block">

@@ -115,6 +115,8 @@
                           className="mx-auto h-12 w-auto"
                           src="/assets/logo/Logo.svg"
                           alt="Your Company"
+                          width={24}
+                          height={24}
                         />
                         <p className="mb-8 lg:mb-16 mt-8 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
                           Contact us now? Want to send us feedback?

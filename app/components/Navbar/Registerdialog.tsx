@@ -57,6 +57,8 @@ const Register = () => {
                                                     className="mx-auto h-12 w-auto"
                                                     src="/assets/logo/Logo.svg"
                                                     alt="Your Company"
+                                                    width={30}
+                                                    height={30}
                                                 />
                                                 <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                                                     Register your account

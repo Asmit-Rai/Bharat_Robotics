@@ -11,7 +11,7 @@ export default function Home() {
         <Banner />
         <Tabs />
         <ImageSlider/>
-        <Mentor />
+        {/* <Mentor /> */}
         <Students />
         <Newsletter />
     </main>
