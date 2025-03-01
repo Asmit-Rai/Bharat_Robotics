@@ -37,6 +37,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
                             height={30} 
                             onClick={() => {
                                 setIsOpen(false);
+                                
                             }}
                         />
                         <XMarkIcon className="block h-6 w-6" onClick={() => {
