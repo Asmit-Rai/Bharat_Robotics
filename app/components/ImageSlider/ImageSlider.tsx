@@ -1,5 +1,4 @@
 import Carousel from "@/components/Carousel";
-import Image from "next/image";
 
 const ImageSlider: React.FC = () => {
   const myImages = [
@@ -22,14 +21,8 @@ const ImageSlider: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center p-6 bg-white">
-      {/* <h1 className="text-3xl font-bold mb-6 text-center"></h1> */}
       <div className="w-full max-w-6xl shadow-lg rounded-lg overflow-hidden">
-        <Carousel 
-          images={myImages} 
-          altTexts={myAltTexts} 
-          width={"100%"} 
-          height={"auto"} 
-        />
+        <Carousel images={myImages} altTexts={myAltTexts} width={1200} height={600} />
       </div>
     </div>
   );
