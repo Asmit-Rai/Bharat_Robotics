@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, ChangeEvent, FormEvent } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, doc, setDoc } from 'firebase/firestore';
+import Image from 'next/image';
 
 // Firebase configuration object (use your own credentials)
 const firebaseConfig = {
@@ -111,7 +112,7 @@ const BuyCourse: React.FC = () => {
                             >
                                 <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                     <div className="py-8 lg:py-8 px-4 mx-auto max-w-screen-md">
-                                        <img
+                                        <Image
                                             className="mx-auto h-12 w-auto"
                                             src="/assets/logo/Logo.svg"
                                             alt="Your Company"

@@ -1,5 +1,6 @@
 import React from 'react';
 import BuyCourse from './BuyCourse';
+import Image from 'next/image';
 
 const CoursesOffer: React.FC = () => {
     return (
@@ -14,7 +15,7 @@ const CoursesOffer: React.FC = () => {
                 <div className="bg-white shadow-lg rounded-lg p-6">
                     <h2 className="text-2xl font-bold mb-4">For School Students</h2>
                     <div className="mb-4">
-                        <img 
+                        <Image 
                             src="/assets/courses_offer/course_school_students.png" 
                             alt="School Course Poster" 
                             className="w-full h-70 object-cover rounded-lg" 
@@ -42,7 +43,7 @@ const CoursesOffer: React.FC = () => {
                 <div className="bg-white shadow-lg rounded-lg p-6">
                     <h2 className="text-2xl font-bold mb-4">For College Students</h2>
                     <div className="mb-4">
-                        <img 
+                        <Image
                             src="/assets/courses_offer/course_college_students.png" 
                             alt="College Course Poster" 
                             className="w-full h-70 object-cover rounded-lg" 

@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -8,16 +7,16 @@ interface CarouselProps {
   images: string[];
   interval?: number;
   altTexts?: string[];
-  width?: string | number;
-  height?: string | number;
+  width?: number;
+  height?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
   images,
   interval = 3000,
   altTexts = [],
-  width = "100%",
-  height = "auto",
+  width = 1200,
+  height = 600,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -28,25 +27,16 @@ const Carousel: React.FC<CarouselProps> = ({
   }
 
   useEffect(() => {
-    const startCarousel = () => {
-      if (images.length > 1) {
-        intervalRef.current = setInterval(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % numImages);
-        }, interval);
-      }
-    };
-
-    const stopCarousel = () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-
-    startCarousel();
+    if (numImages > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % numImages);
+      }, interval);
+    }
 
     return () => {
-      stopCarousel();
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, [interval, numImages]);
 
@@ -57,7 +47,7 @@ const Carousel: React.FC<CarouselProps> = ({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-md" style={{ width, height }}>
+    <div className="relative w-full max-w-6xl overflow-hidden rounded-lg shadow-md" style={{ height: height }}>
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={currentIndex}
@@ -65,14 +55,14 @@ const Carousel: React.FC<CarouselProps> = ({
           initial="initial"
           animate="animate"
           exit="exit"
-          className="absolute inset-0"
+          className="relative w-full h-full"
         >
           <Image
             src={images[currentIndex]}
             alt={altTexts[currentIndex] || `Slide ${currentIndex + 1}`}
-            fill
-            style={{ objectFit: "cover" }}
-            sizes="100vw"
+            width={width}
+            height={height}
+            className="object-cover w-full h-full"
             priority={currentIndex === 0}
           />
         </motion.div>
@@ -83,7 +73,9 @@ const Carousel: React.FC<CarouselProps> = ({
           {images.map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full ${index === currentIndex ? "bg-blue-500" : "bg-gray-300"} hover:bg-blue-300 transition-colors duration-200`}
+              className={`w-3 h-3 rounded-full ${
+                index === currentIndex ? "bg-blue-500" : "bg-gray-300"
+              } hover:bg-blue-300 transition-colors duration-200`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
             ></button>

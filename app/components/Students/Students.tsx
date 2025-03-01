@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import Slider from "react-slick";
 import React, { Component } from "react";
-
+import Image from "next/image";
 
 interface DataType {
     profession: string;
@@ -40,13 +40,9 @@ const postData: DataType[] = [
         starimg: '/assets/students/stars.png',
         detail: "Learning Arduino and creating projects like Line Follower Robots was a game-changer for me. The instructors explain everything so clearly and thoroughly!"
     }
-    
-]
-
-
+];
 
 export default class MultipleItems extends Component {
-
     render() {
         const settings = {
             dots: true,
@@ -80,11 +76,9 @@ export default class MultipleItems extends Component {
             ]
         };
 
-
         return (
             <div id="testimonial-section" className='bg-bgpink'>
                 <div className="mx-auto max-w-2xl px-4 pt-16 pb-64 sm:pt-24 lg:max-w-7xl lg:px-8">
-
                     <div className='sm:flex justify-between items-center pb-6'>
                         <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 my-4">Our Reviews</h2>
                         <div>
@@ -95,18 +89,36 @@ export default class MultipleItems extends Component {
                     </div>
 
                     <p className='text-lg font-medium pb-12'>Build skills with our courses and mentor from world-class companies.</p>
-
+\
                     <Slider {...settings}>
                         {postData.map((items, i) => (
                             <div key={i}>
                                 <div className='bg-white m-4 pt-8 px-12 pb-10 text-center rounded-lg'>
-                                    <div className='relative'>
-                                        <img src={items.imgSrc} alt="Profile Images" className="inline-block h-20 w-20 m-auto rounded-full ring-2 ring-white" />
-                                        <img src={'/assets/students/greenpic.svg'} alt="greenbg" className=" absolute inline-block h-6 w-6 position-green" />
+                                    <div className='relative w-20 h-20 mx-auto'>
+                                        <Image 
+                                            src={items.imgSrc} 
+                                            alt={`Photo of ${items.name}`} 
+                                            width={120} 
+                                            height={100} 
+                                            className="rounded-full ring-2 ring-white object-cover"
+                                        />
+                                        <Image 
+                                            src={'/assets/students/greenpic.svg'} 
+                                            alt="Green background decoration" 
+                                            width={14} 
+                                            height={14} 
+                                            className="absolute left-1 top-1"
+                                        />
                                     </div>
-                                    <h3 className='text-sm pt-4 pb-2'>{items.profession}</h3>
+                                    <h3 className='text-sm pt-12 pb-2'>{items.profession}</h3>
                                     <h4 className='text-2xl font-semibold pb-3'>{items.name}</h4>
-                                    <img src={items.starimg} alt="stars-img" className='m-auto pb-6' />
+                                    <Image 
+                                        src={items.starimg} 
+                                        alt="5-star rating image" 
+                                        width={120} 
+                                        height={20} 
+                                        className='m-auto pb-6'
+                                    />
                                     <p className='text-lg font-medium leading-9'>{items.detail}</p>
                                 </div>
                             </div>

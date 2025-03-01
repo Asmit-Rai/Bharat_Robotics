@@ -21,7 +21,7 @@ const ImageSlider: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center p-6 bg-white">
-      <div className="w-full max-w-6xl shadow-lg rounded-lg overflow-hidden">
+      <div className="w-full max-w-6xl">
         <Carousel images={myImages} altTexts={myAltTexts} width={1200} height={600} />
       </div>
     </div>
