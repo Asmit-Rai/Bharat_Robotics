@@ -6,6 +6,7 @@ import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Signdialog from "./Signdialog";
 import Contactus from "./Contactus";
+import Image from 'next/image';
 
 interface NavigationItem {
     name: string;
@@ -36,12 +37,12 @@ const Navbar = () => {
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <img
+                                <Image
                                     className="block h-8 w-auto lg:hidden"
                                     src={'/assets/logo/Logo.svg'}
                                     alt="Courses-Logo"
                                 />
-                                <img
+                                <Image
                                     className="hidden h-10 w-auto lg:block"
                                     src={'/assets/logo/Logo.svg'}
                                     alt="Courses-Logo"

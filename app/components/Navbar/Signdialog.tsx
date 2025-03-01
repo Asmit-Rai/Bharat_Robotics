@@ -4,6 +4,7 @@ import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { auth } from '../../firebaseConfig'; // Import the firebase auth
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth method
 import { useRouter } from 'next/navigation'; // Import Next.js router
+import Image from 'next/image';
 
 const Signin = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -105,7 +106,7 @@ const Signin = () => {
                                     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                                         <div className="w-full max-w-md space-y-8">
                                             <div>
-                                                <img
+                                                <Image
                                                     className="mx-auto h-12 w-auto"
                                                     src="/assets/logo/Logo.svg"
                                                     alt="Your Company"
