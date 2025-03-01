@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect, useRef } from "react";
+import styles from "../styles/carousel.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -22,10 +23,6 @@ const Carousel: React.FC<CarouselProps> = ({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const numImages = images.length;
 
-  if (numImages === 0) {
-    return <div>No images provided.</div>;
-  }
-
   useEffect(() => {
     if (numImages > 1) {
       intervalRef.current = setInterval(() => {
@@ -38,7 +35,11 @@ const Carousel: React.FC<CarouselProps> = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [interval, numImages]);
+  }, [interval, numImages, images.length]);
+
+  if (numImages === 0) {
+    return <div>No images provided.</div>;
+  }
 
   const variants = {
     initial: { opacity: 0, x: 100 },
@@ -47,7 +48,7 @@ const Carousel: React.FC<CarouselProps> = ({
   };
 
   return (
-    <div className="relative w-full max-w-6xl overflow-hidden rounded-lg shadow-md" style={{ height: height }}>
+    <div className={`relative w-full max-w-6xl overflow-hidden rounded-lg shadow-md carousel-container`}>
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={currentIndex}
